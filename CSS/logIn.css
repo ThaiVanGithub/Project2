@@ -1,0 +1,154 @@
+
+        /* Background image */
+        .body-form {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            background-image: url('https://image.sggp.org.vn/Uploaded/2024/mzzan/2022_04_26/songnhoque-bia_DHXD.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Form container styling */
+        .form-container {
+            width: 500px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 8px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form__title {
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form__group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .form__input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .form__group--checkbox {
+            display: flex;
+            align-self: start;
+        }
+
+        .form__input--checkbox {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+        }
+
+        .form__label {
+            font-size: 14px;
+            color: #666;
+            display: flex;
+            align-items: center;
+
+        }
+
+        .form__buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .form__button {
+            padding: 12px 20px;
+            font-size: 16px;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .form__button--register {
+            background-color: #d9534f;
+        }
+
+        .form__button--register:hover {
+            background-color: #c9302c;
+        }
+
+        .form__button--signin {
+            background-color: #5bc0de;
+        }
+
+        .form__button--signin:hover {
+            background-color: #31b0d5;
+        }
+
+        .form__button--login {
+            background-color: #5cb85c;
+        }
+
+        .form__button--login:hover {
+            background-color: #4cae4c;
+        }
+
+        .form__button--back {
+            background-color: #5bc0de;
+        }
+
+        .form__button--back:hover {
+            background-color: #31b0d5;
+        }
+
+        .form__link {
+            display: block;
+            text-align: right;
+            margin-top: -10px;
+            font-size: 14px;
+            color: #5bc0de;
+            text-decoration: none;
+            margin-bottom: 15px;
+        }
+
+        .form__link:hover {
+            text-decoration: underline;
+        }
+
+        /* Social Login Section */
+        .form__social-login {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .form__social-login p {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .form__social-icons a {
+            display: inline-block;
+            margin: 0 10px;
+            color: #666;
+            font-size: 18px;
+            transition: color 0.3s;
+        }
+
+        .form__social-icons a:hover {
+            color: #31b0d5;
+        }
+   

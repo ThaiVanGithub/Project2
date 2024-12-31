@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign in</title>
+    <link rel="stylesheet" href="CSS/variable.css">
+    <link rel="stylesheet" href="CSS/style.css">
+    <link rel="stylesheet" href="CSS/base.css">
+    <link rel="stylesheet" href="CSS/logIn.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Roboto+Slab:wght@100..900&family=Style+Script&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <!-- Phan logo va ten -->
+            <div class="header-logo">
+
+                <a href="index.html"> <img
+                        src="https://product.hstatic.net/200000313235/product/2_fb851af8490845d4904efc103c09894c.jpg"
+                        alt="la-co-Viet-Nam"> </a>
+                <h1><a href="index.html">Vtravel</a></h1>
+
+            </div>
+
+            <!-- Navigation -->
+            <div class="header-navigation">
+                <ul>
+                    <li id="bookTour"><a href="#">Tư vấn</a></li>
+                    <li id="findHotel"><a href="#">Dịch vụ</a></li>
+                    <li id="talk"><a href="#">Liên hệ</a></li>
+                </ul>
+            </div>
+            <!-- menu -->
+            <div class="header-menu">
+                <a href="#"><i class="fa-solid fa-phone"></i></a>
+                <a href="#"><i class="fa-solid fa-user"></i></a>
+                <a id="showMenu" class="showMenu" href="#"><i class="fa-solid fa-bars"></i></a>
+                <div class="listMenu hide">
+
+                    <button id="closedMenu">x</button>
+                    <h3>Danh mục</h3>
+
+                    <ul>
+                       
+                        <li><a href="logIn.html">Đăng nhập</a></li>
+                        <li><a href="#">Đặt phòng</a></li>
+                        <li><a href="logIn.html">Đặt tour</a></li>
+                        <li><a href="#">Thuê HDV</a></li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="body-form">
+        <div class="form-container">
+            <!-- Registration Form -->
+            <form class="form form--register" id="registerForm" style="display: none;">
+                <h1 class="form__title">Đăng ký tài khoản</h1>
+                <!-- Tên người dùng -->
+                <div class="form__group">
+                    <input type="text" id="username" class="form__input form__input--text" placeholder="Tên người dùng" required>
+                </div>
+                <!-- Số điện thoại -->
+                <div class="form__group">
+                    <input type="tel" id="phone-number" class="form__input form__input--text" placeholder="Số điện thoại (Mật khẩu)" required>
+                </div>
+                <!-- Email -->
+                <div class="form__group">
+                    <input type="email" id="email" class="form__input form__input--email" placeholder="Email" required>
+                </div>
+                <!-- Địa chỉ -->
+                <div class="form__group">
+                    <textarea id="address" class="form__input form__input--textarea" placeholder="Địa chỉ" rows="3"></textarea>
+                </div>
+                <!-- Đồng ý điều khoản -->
+                <div class="form__group form__group--checkbox">
+                    <input type="checkbox" id="terms" class="form__input form__input--checkbox" required>
+                    <label for="terms" class="form__label">Đồng ý với chính sách và điều khoản sử dụng.</label>
+                </div>
+                <!-- Nút hành động -->
+                <div class="form__buttons">
+                    <button type="button" class="form__button form__button--register">Đăng ký ngay</button>
+                    <button type="button" class="form__button form__button--signin" onclick="toggleForms()">Đăng nhập</button>
+                </div>
+            </form>
+            
+
+           
+            <!-- Login Form -->
+            <form class="form form--login" id="loginForm" >
+                <h1 class="form__title">Đăng nhập</h1>
+                <div class="form__group">
+                    <input type="email" id="login-email" class="form__input form__input--email" placeholder="Email">
+                </div>
+                <div class="form__group">
+                    <input type="password" id="login-password" class="form__input form__input--password"
+                        placeholder="Password">
+                </div>
+                <div class="form__group form__group--checkbox">
+                    <input type="checkbox" id="remember-me" class="form__input form__input--checkbox">
+                    <label for="remember-me" class="form__label">Lưu mật khẩu</label>
+                </div>
+                <a href="#" class="form__link">Quên mật khẩu ?</a>
+                <div class="form__buttons">
+                    <button type="button" class="form__button form__button--login">Đăng nhập</button>
+                    <button type="button" class="form__button form__button--back" onclick="toggleForms()" id="btnRegister">Đăng
+                        kí</button>
+                </div>
+                <div class="form__social-login">
+                    <p>hoặc đăng nhập với</p>
+                    <div class="form__social-icons">
+                        <a href="#"><i class="fab fa-google"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </form>
+
+            </form>
+        </div>
+
+    </div>
+    
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-column">
+                <h3>Thông tin</h3>
+                <ul>
+                    <li><a href="#">VietTravel.com</a></li>
+                    <li><a href="#">Bản quyền</a></li>
+                    <li><a href="#">Chứng nhận</a></li>
+                    <li><a href="#">Giấy phép</a></li>
+                    <li><a href="#">Trung tâm bảo mật</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Liên hệ</h3>
+                <ul>
+                    <li><a href="#">Gọi ngay</a></li>
+                    <li><a href="#">Tin mới</a></li>
+                    <li><a href="#">Truyền thông</a></li>
+                    <li><a href="#">Hỗ trợ</a></li>
+                    <li><a href="#">Đặt tour</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Tải về</h3>
+                <ul>
+                    <li><a href="#">Ảnh và video</a></li>
+                    <li><a href="#">Ứng dung</a></li>
+                    <li><a href="#">Bản đồ Việt</a></li>
+                </ul>
+            </div>
+            <div class="footer-column follow-us">
+                <h3>Theo dõi</h3>
+                <ul>
+                    <li><a href="#"><i class="fa-brands fa-facebook"></i></a></li>
+
+                    <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
+                    <li><a href="#"><i class="fa-brands fa-youtube"></i></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="footer-logo">
+
+            </div>
+            <p>Copyright © 2024 VietTravel</p>
+            <div class="powered-by">
+                <p>Powered by ThaiVan</p>
+            </div>
+        </div>
+    </footer>
+
+    
+    <script src="JS/function.js"></script>
+    <script src="JS/signIn.js"></script>
+</body>
+
+</html>

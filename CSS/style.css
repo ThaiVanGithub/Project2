@@ -1,0 +1,746 @@
+/* Header */
+Header{
+    height: 80px;
+}
+Header .container {
+  display: flex;
+  justify-content: space-between;
+  height: 100%;
+  
+}
+
+/* Header .container .header-navigation .menu-show{
+    background-color: rgb(7, 112, 112);
+    position: absolute;
+    left: 42%;
+    top: 10%;
+    cursor: pointer;
+}
+Header .container .header-navigation .menu-show ul{
+    flex-direction: column;
+    
+    padding: 0;
+}
+Header .container .header-navigation .menu-show ul li{
+   padding: 5px;
+} */
+Header .container .header-logo{
+    display: flex  ;
+    padding: 10px;
+    font-size: 10px;
+    margin-left: 30px;
+    /* margin-top: 10px; */
+    
+   
+}
+Header .container .header-logo img{
+    width: 87px;
+    height: 70px;
+   
+    padding-right: 5px;
+    border-radius: 20px;
+    box-shadow: 20px;
+}
+Header .container .header-logo h1{
+    font-family: "Style Script", cursive;
+    font-size: 45px;
+    padding: 10px;
+    margin-top: 0;
+
+}
+Header .container .header-navigation ul{
+    display: flex   ;
+    text-align: center;
+    padding-left: 0;
+    
+}
+Header .container .header-navigation ul li{
+    padding: 20px;
+    padding-top: 10px;
+    font-size: 18px;
+    /* margin-top: 20px; */
+
+}
+Header .container .header-navigation ul li a{
+    color: var(--text-color);
+    font-weight: 500;
+}
+Header .container .header-menu{
+    display: flex;
+    margin-right: 30px;
+    z-index: 1;
+    
+}
+Header .container .header-menu i{
+    padding: 20px;
+    padding-top: 10px;
+    font-size: 22px;
+    margin-top: 20px;
+    color: black;
+    padding-bottom: 10px;
+}
+Header .container .header-menu i:hover{
+    background-color: rgba(208, 209, 209, 0.597);
+    border-radius: 5px;
+    
+}
+
+Header .container .header-menu .listMenu{
+    position: absolute;
+    background-color: beige;
+    top: 10%;
+    right: 4%;
+    padding: 10px;
+    margin-top: 0px;
+    width: 10%;
+    transition:  0.5s ease-in-out;
+    border-radius: 5px;
+   
+}
+/* Header .container .header-menu .listMenu {
+    position: absolute;
+    background-color: beige;
+    top: 10%;
+    right: 4%;
+    padding: 10px;
+    margin-top: 0px;
+    width: 10%;
+    transition: opacity 0.5s ease, transform 0.5s ease; 
+    opacity: 0;
+    transform: translateY(-20px); 
+} */
+
+.hide{
+    display: none;
+    
+}
+Header .container .header-menu .listMenu h3{
+    text-align: center;
+    padding-top: 0px;
+    margin-top: 0px;
+}
+Header .container .header-menu .listMenu ul {
+    padding: 0px;
+}
+Header .container .header-menu .listMenu ul li {
+    padding: 7px;
+    cursor: pointer;
+    position: relative;
+    margin-left: 5px;
+    z-index: 1;
+}
+Header .container .header-menu .listMenu ul li a{
+    color: black;
+}
+Header .container .header-menu .listMenu ul li a:hover{
+    color: rgb(34, 122, 181);
+}
+Header .container .header-menu .listMenu button{
+    position: relative;
+    all: unset;
+    cursor: pointer;
+    border: 1px solid rgba(0, 0, 0, 0.251);
+    padding: 8px;
+    font-weight: 700;  
+    margin-left: 123px;
+    
+    border-radius: 3px;
+}
+Header .container .header-menu .listMenu button:hover{
+    background-color: black;
+    color: white;
+}
+Header .container .header-menu .listMenu button i {
+    padding: 10px;
+    
+}
+/* End header */
+
+
+/* Theme header video */
+.theme-header {
+    height: 80%;
+    overflow: hidden;
+ 
+ 
+}
+
+/* Theme header video end */
+
+
+/* section things to do */
+.section-planning{
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 50vh;
+    padding: 50px;
+}
+.section-planning .container{
+    flex-direction: row;
+    display: flex;
+    justify-content: space-between;
+    width: 70%;
+    background-color: antiquewhite;
+    padding: 60px;
+    border-radius: 10px;
+}
+.section-planning .container h2{
+    font-size: 30px;
+    padding: 0;
+}
+.section-planning .container ul{
+    padding-left: 0;
+}
+.section-planning .container ul li{
+    padding-top: 20px;
+    font-size: 18px;
+}
+.section-planning .container ul li a{
+    color: var(--text-color);
+    transition: color 0.5 ease-in-out;
+}
+.section-planning .container ul li a:hover{
+    color: rgb(250, 73, 73);
+}
+.section-planning .container .things-to-do{
+    padding: 20px;
+}
+.section-planning .container .place-to-go{
+    padding: 20px;
+}
+.section-planning .container .plan-your-trip{
+    padding: 20px;
+}
+
+.section-planning .container button{
+    margin-top: 10px;
+    border: 0;
+    font-size: 16px;
+    background-color: antiquewhite;
+    padding: 7px;
+    font-weight: 600;
+    border-radius: 5px;
+    border: 1px solid rgb(2, 2, 2);
+    transition: backgroundColor, padding 0.3s ease-in-out;
+    
+   
+    
+}
+.section-planning .container button:hover{
+    background-color: #252525;
+    color: wheat;
+    padding: 10px;
+    
+}
+/* section things to do  end*/
+
+
+/* section blog */
+.section-blog {
+    padding-top: 10px;
+    margin-top: 70px;
+    background-color: #ffffffd1;
+    
+  
+}
+.section-blog .container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    position: relative;;
+}
+.section-blog .blog-content {
+    text-align: center;
+    
+}
+.section-blog .container .inner-blog-title{
+    padding: 15px;
+}
+.section-blog .blog-content h2 {
+    font-size: 40px;
+    padding-top: 20px;
+   
+    
+}
+.section-blog .blog-content p {
+    font-size: 20px;
+   
+}
+
+.section-blog .container .inner-blog .inner-blog-content{
+    width: 100%;
+   
+   
+}
+.section-blog .container .inner-blog .inner-blog-content img{
+    width: 100%;
+    height: 310px;
+    object-fit: cover;
+    border-radius: 10px ;
+    transition: height 0.5s ease-in-out;
+    
+}
+
+.section-blog .container .inner-blog .inner-blog-content img:hover{
+    height: 340px;;
+}
+.section-blog .container .inner-blog {
+    width: 25%;
+    height: 10%;
+    margin: 10px;
+    overflow: hidden;
+    transition: padding  0.5s ease-in-out;
+    border: 1px solid white;
+    border-radius: 10px 10px 0px 0px;
+    transition: background 0.5s ease-in-out;
+}
+
+.section-blog .container .inner-blog:hover {
+   /* border-radius: 50px 50px 0px 0px; */
+   background-color: #555555;
+   color: white;
+   
+}
+/* section blog end */
+
+
+/* section map */
+/* section map end */
+
+
+/* section bookng */
+
+
+/* footer */
+footer {
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
+    padding: 20px 0;
+    font-family: Arial, sans-serif;
+    background-repeat: no-repeat;
+    background-position: center;
+    box-sizing: border-box;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-column {
+    flex-basis: 20%;
+    padding: 20px;
+}
+
+.footer-column h3 {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.footer-column ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.footer-column ul li {
+    margin-bottom: 8px;
+}
+
+.footer-column ul li a {
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.footer-column ul li a:hover {
+    color: #337ab7;
+}
+
+.follow-us {
+    flex-basis: 20%;
+    padding: 20px;
+}
+
+.follow-us ul {
+    display: flex;
+    gap: 15px;
+}
+
+.follow-us ul li a {
+    font-size: 1.5em;
+    color: #337ab7;
+}
+
+.footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-top: 1px solid #ddd;
+}
+
+.footer-bottom .footer-logo {
+    display: flex;
+    align-items: center;
+}
+
+.footer-logo img {
+    width: 30px;
+    margin-right: 10px;
+}
+
+.footer-logo p {
+    font-size: 1.2em;
+    color: #333;
+}
+
+.powered-by {
+    display: flex;
+    align-items: center;
+    color: #666;
+}
+
+
+/* slide section */
+/* slide section */
+/* slide section */
+
+
+.section-slide{
+    flex-direction: column;
+    padding-bottom: 50px;
+    background-color: rgba(235, 235, 235, 0.718);
+}
+.section-slide .section-header-slide h1 {
+    padding: 0px;
+    margin-top: 50px;
+    margin-bottom: 0px;
+    color: rgb(182, 23, 23);
+    
+}
+.section-slide .section-header-slide p{color: rgb(182, 23, 23);color: rgb(91, 29, 29);
+    text-align: center;
+}
+.section-slide,
+.section-slide .container {
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  
+}
+
+.section-slide .container {
+  width: 90%;
+  overflow: hidden;
+  position: relative;
+}
+
+.section-slide .container .slide {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.section-slide .container .slide.active {
+  display: flex; /* Chỉ hiển thị slide đang hoạt động */
+}
+
+.section-slide .container .slide .card {
+  width: 130vmin;
+  height: 55vmin;
+  display: flex;
+  box-shadow: 0 30px 40px -15px rgba(0, 0, 0, 0.35);
+  background-color: #fff;
+}
+
+.section-slide .container .slide .card .card__img {
+  background-position: center;
+  width: 50%;
+  height: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+ 
+}
+
+.section-slide .container .slide .card  #img01 {
+  
+  background-position: center;
+  background-repeat: no-repeat;
+  object-fit: cover;
+  background-image: url(/IMAGE/NhoQue.jpg);
+}
+
+.section-slide .container .slide .card  #img02 {
+    background-image: url(/IMAGE/sâp.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    object-fit: cover;
+}
+
+.section-slide .container .slide .card  #img03 {
+    background-image: url(/IMAGE/DaNang.jpg);
+    background-position: center;
+     background-repeat: no-repeat;
+    object-fit: cover;
+}
+
+.section-slide .container .slide .card  #img04 {
+    background-image: url(/IMAGE/Hue.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    object-fit: cover;
+}
+.section-slide .container .slide .card  #img05 {
+    background-image: url(/Image/HoiAn.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    object-fit: cover;
+}
+.section-slide .container .slide .card  .card__content {
+  padding: 5vmin;
+  box-sizing: border-box;
+  width: 50%;
+  overflow:scroll;
+}
+
+.section-slide .container .slide .card  .card__content-header {
+  font-weight: 900;
+  font-size: 4vmin;
+ 
+}
+
+.section-slide .prevnext {
+  position: absolute;
+  width: 4vmin;
+  height: 15vmin;
+  right: 2%;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.section-slide .prevnext-button {
+  width: 100%;
+  height: 50%;
+  border: none;
+  background-color: transparent;
+  font-size: 5vmin;
+  cursor: pointer;
+}
+
+.section-slide .prevnext-button:hover {
+  opacity: 0.8;
+}
+.section-slide .section-slide .slide {
+    transition: transform 0.5s ease, opacity 0.5s ease;
+  }
+  
+  .slide-active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .slide-inactive {
+    opacity: 0;
+    transform: translateY(50%);
+  }
+ .section-slide .section-header {
+    text-align: center;
+    margin-bottom: 5vmin;
+  }
+  
+  .section-slide .section-title {
+    font-size: 6vmin;
+    font-weight: 800;
+    color: #252525;
+  }
+  
+  .section-slide .section-subtitle {
+    font-size: 2.5vmin;
+    font-weight: 400;
+    color: #555555;
+    opacity: 0.8;
+  }
+
+
+  .section-slide .container .slide .card  #img01:hover {
+    transform: scale(1.05);
+    transition: transform 0.5s ease-in-out;
+   
+
+  }
+  .section-slide .container .slide .card  #img03:hover {
+    transform: scale(1.05);
+    transition: transform 0.5s ease-in-out;
+    
+  }
+  .section-slide .container .slide .card  #img02:hover {
+    transform: scale(1.05);
+    transition: transform 0.5s ease-in-out;
+  }
+  .section-slide .container .slide .card  #img04:hover {
+    transform: scale(1.05);
+    transition: transform 0.5s ease-in-out;
+  }
+  .section-slide .container .slide .card  #img05:hover {
+    transform: scale(1.05);
+    transition: transform 0.5s ease-in-out;
+  }
+  .section-slide .container .slide .card-position{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+   
+  }
+  .section-slide .container .slide .card-position i{
+    font-size: 20px;
+    margin-left: 20px;
+    border-radius: 20px;
+    
+  }
+
+
+  /* section text 2lai */
+
+  @keyframes highlight {
+	to {
+		background-position: 0;
+	}
+}
+
+mark {
+	animation: highlight linear forwards;
+	animation-timeline: view(60% 20%);
+	background: linear-gradient(
+		to right,
+		oklch(0.86 0.19 84.89 / 1) 50%,
+		oklch(0.86 0.19 84.89 / 0) 50%
+	);
+	background-position: 100%;
+	background-size: 200% 100%;
+	border-radius: 0.125rem;
+	padding-inline: 0.125rem;
+}
+
+
+.section-highlight {
+	color: oklch(0.2 0.19 84.89 / 1);
+	font-size: 20px;
+	line-height: 1.45;
+    margin-top: 30px;
+}
+
+.section-highlight .container {
+	margin: 0;
+}
+
+.section-highlight .container article {
+	display: grid;
+	min-height: 100svh;
+	place-items: center;
+	width: 100%;
+}
+article .content {
+		padding-block: 2rem 30svh;
+		width: min(800px, 90vw);
+}
+
+.section-highlight .container article img {
+		object-fit: cover;
+		height: max(60svh, 60vw);
+		width: 100%;
+	}
+
+:is(h1, h2) {
+	margin: 0;
+	line-height: 1.1;
+}
+
+.section-highlight .container article .content h2 {
+	margin-block-start: 2rem;
+}
+
+.section-highlight .container article img{
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+    object-fit: cover;
+   
+}
+/* section video vietnam */
+.section-vietnamvideo {
+    background-color: #edeed9;
+    padding: 100px 200px;
+    background-image: url(/IMAGE/Vietnam.jpg);
+    background-position: center;
+    background-size: cover;
+}
+.section-vietnamvideo .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px;
+    text-align: center;
+}
+.test{
+    background-color: #555555;
+    color: white;
+    position: absolute;
+    top: 0;
+}
+.section-vietnamvideo h2 {
+    font-size: 40px;
+    margin-bottom: 10px;
+    color: #ffffff;
+    padding: 40px;
+    
+}
+
+.section-vietnamvideo p {
+    font-size: 18px;
+    margin-bottom: 30px;
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.section-vietnamvideo .container .videos {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+   
+}
+
+.section-vietnamvideo .container .videos .video-item {
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 10px;
+    color: #000;
+    width: 500px;
+    text-align: left;
+    
+}
+
+.section-vietnamvideo .container .videos .video-item video {
+    width: 100%; /* Đảm bảo video chiếm toàn bộ chiều rộng của phần tử video-item */
+    height: auto; /* Giữ tỷ lệ khung hình của video */
+    border-radius: 5px; /* Thêm bo tròn cho video */
+    
+}
+
+.section-vietnamvideo .container .videos .video-item h3 {
+    font-size: 16px;
+    margin-top: 10px;
+}

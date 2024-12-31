@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Payments</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f9f9f9;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            color: #444;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table th,
+        table td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        table th {
+            background-color: #f2f2f2;
+            color: #333;
+        }
+
+        table td {
+            color: #555;
+        }
+
+        .status-completed {
+            color: green;
+            font-weight: bold;
+        }
+
+        .status-pending {
+            color: orange;
+            font-weight: bold;
+        }
+
+        .status-failed {
+            color: red;
+            font-weight: bold;
+        }
+
+        .loading,
+        .error {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 18px;
+            color: #666;
+        }
+
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <button class="back" id="back">Back</button>
+    <div class="container">
+        <h1>User Payments</h1>
+        <div id="loadingMessage" class="loading">Loading payments...</div>
+        <table id="paymentTable" style="display: none;">
+            <thead>
+                <tr>
+                    <th>Payment ID</th>
+                    <th>Amount</th>
+                    <th>Payment Method</th>
+                    <th>Payment Date</th>
+                    <th>Status</th>
+                    <th>Tour Name</th>
+                    <th>Tour Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Data rows will be inserted here -->
+            </tbody>
+        </table>
+        <div id="errorMessage" class="error" style="display: none;"></div>
+    </div>
+
+    <script>
+        async function fetchPayments() {
+            try {
+                // Lấy userId từ localStorage
+                const user = JSON.parse(localStorage.getItem('user'));
+                if (user && user.userId) {
+                    var userId = user.userId;
+                    console.log('User ID:', userId);
+                } else {
+                    console.error('User not found in localStorage');
+                }
+
+
+                // Hiện thị loading message
+                showLoading();
+
+                // Gọi API để lấy dữ liệu payments
+                const response = await fetch(`http://localhost:3000/api/users/payments/${userId}`);
+
+                if (!response.ok) {
+                    // Nếu response không thành công, lấy thông báo lỗi từ response
+                    const errorMessage = await response.text();
+                    showError(`Failed to fetch payments: ${errorMessage}`);
+                    return;
+                }
+
+                // Parse response thành JSON
+                const payments = await response.json();
+
+                // Ẩn loading message
+                hideLoading();
+
+                // Kiểm tra nếu không có payments
+                if (!payments || payments.length === 0) {
+                    showError('No payments found for this user');
+                    return;
+                }
+
+                // Hiển thị dữ liệu payments
+                displayPayments(payments);
+            } catch (error) {
+                // Xử lý các lỗi chung
+                console.error('Error fetching payments:', error);
+                showError(`An error occurred: ${error.message}`);
+            }
+        }
+
+        function showLoading() {
+            // Hiện thị loading message
+            document.getElementById('loadingMessage').style.display = 'block';
+        }
+
+        function hideLoading() {
+            // Ẩn loading message
+            document.getElementById('loadingMessage').style.display = 'none';
+        }
+
+        function showError(message) {
+            // Hiện thị error message
+            const errorMessage = document.getElementById('errorMessage');
+            errorMessage.style.display = 'block';
+            errorMessage.textContent = message;
+        }
+
+        function displayPayments(payments) {
+            // Hiện thị dữ liệu payments
+            const tableBody = document.querySelector('#paymentTable tbody');
+            tableBody.innerHTML = '';
+
+            payments.forEach(payment => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+      <td>${payment.PaymentID}</td>
+      <td>${payment.Amount.toLocaleString()} VND</td>
+      <td>${payment.PaymentMethod}</td>
+      <td>${new Date(payment.PaymentDate).toLocaleString()}</td>
+      <td class="status-${payment.Status.toLowerCase()}">${payment.Status}</td>
+      <td>${payment.TourName}</td>
+      <td>${payment.TourPrice.toLocaleString()} VND</td>
+    `;
+                tableBody.appendChild(row);
+            });
+
+            // Hiện thị bảng
+            document.getElementById('paymentTable').style.display = 'table';
+        }
+
+        // Gọi hàm fetchPayments khi trang được tải
+        document.addEventListener('DOMContentLoaded', fetchPayments);
+
+
+        const backHistory = document.querySelector('#back');
+        backHistory.addEventListener('click', () => {
+            window.history.back();
+
+        })
+    </script>
+</body>
+
+</html>

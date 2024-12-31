@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project3</title>
+
+
+    <link rel="stylesheet" href="CSS/variable.css">
+    <link rel="stylesheet" href="CSS/style.css">
+    <link rel="stylesheet" href="CSS/base.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Roboto+Slab:wght@100..900&family=Style+Script&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet">
+    
+
+
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <!-- Phan logo va ten -->
+            <div class="header-logo">
+                <a href="index.html"><img src="https://product.hstatic.net/200000313235/product/2_fb851af8490845d4904efc103c09894c.jpg"
+                    alt="la-co-Viet-Nam"></a>
+                <h1><a href="index.html">Vtravel</a></h1> 
+            </div>
+           
+            <!-- Navigation -->
+            <div class="header-navigation">
+                <ul>
+                    <li id="bookTour"><a href="#">Tư vấn</a></li>
+                    <li id="findHotel"><a href="#">Dịch vụ</a></li>
+                    <li id="talk"><a href="#">Liên hệ</a></li>
+                </ul>
+            </div>
+            <!-- menu -->
+            <div class="header-menu">
+                <a href="#"><i class="fa-solid fa-phone"></i></a>
+                <a href="profileUser.html"><i class="fa-solid fa-user"></i></a>
+                <a id="showMenu" class="showMenu" href="#"><i class="fa-solid fa-bars"></i></a>
+                <div class="listMenu hide">
+
+                    <button id="closedMenu">x</button>
+                    <h3>Danh mục</h3>
+                    <ul>
+                       
+                        <li class="logIn"><a  href="logIn.html">Đăng nhập</a></li>   
+                        <li><a href="#">Đặt phòng</a></li>
+                        <li><a href="allTours.html">Đặt tour</a></li>
+                        <li><a href="#">Thuê HDV</a></li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+    <div class="theme-header">
+        <video src="VIDEO/Theme4.mp4" width="100%" autoplay muted poster="IMAGE/HoiAn.jpg"></video>
+
+
+    </div>
+
+
+    <div class="section-planning">
+        <div class="container">
+            <div class="place-to-go">
+                <h2>Nơi nên đi</h2>
+                <ul>
+                    <li><a href="#">- Miền Bắc</a></li>
+                    <li> <a href="#">- Miền Trung</a> </li>
+                    <li><a href="#">- Miền Nam</a></li>
+                    <li><a href="#">- Miền Tây</a></li>
+                </ul>
+                <button>+ hiển thị thêm</button>
+            </div>
+
+            <div class="things-to-do">
+                <h2>Điều phải làm</h2>
+                <ul>
+                    <li><a href="#">- Đặc sản</a></li>
+                    <li><a href="#">- Cảnh đẹp</a></li>
+                    <li><a href="#">- Văn hóa</a></li>
+                    <li><a href="#">- Truyền thống</a></li>
+                </ul>
+                <button>+ hiển thị thêm</button>
+            </div>
+
+            <div class="plan-your-trip">
+                <h2>Kế hoạch</h2>
+                <ul>
+                    <li><a href="#">- Lên kế hoạch</a></li>
+                    <li><a href="#">- Nhận tư vấn</a></li>
+                    <li><a href="#">- Thuê HDV</a></li>
+                    <li><a href="#">- Gợi ý</a></li>
+                </ul>
+                <button>+ hiển thị thêm</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- section blog -->
+    <div class="section-blog">
+        <div class="blog-content">
+            <h2>Văn hóa</h2>
+            <p>Hãy cùng tìm hiểu về văn hóa, truyền thống và sắc đẹp của đất nước hình chữ S nhé</p>
+        </div>
+        <div class="container">
+
+            <div class="inner-blog">
+                <div class="inner-blog-content">
+                    <a href=""><img src="IMAGE/songNhoQue.jpg" alt=""></a>
+
+                </div>
+                <div class="inner-blog-title">
+                    <h2>Sông Nho Quế</h2>
+                    <p>Một màu xanh ngọc mê hoặc khách du lịch trong nước lẫn ngoài nước. Con sông bắt nguồn từ
+                        Vân Nam Trung Quốc, mang vẻ đẹp hùng vĩ khó tin.
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="inner-blog">
+                <div class="inner-blog-content">
+                    <a href=""><img src="IMAGE/Ghe.jpg" alt=""></a>
+
+                </div>
+                <div class="inner-blog-title">
+                    <h2>Miền tây</h2>
+                    <p>Một màu vàng phủ kín cả miền sông nước miền tây, người dân chất phát. Lối sống bình dị không hấp tấp
+                        để lại ấn tượng sâu sắc cho du khách ghé thăm.
+                    </p>
+                </div>
+
+            </div>
+<!-- 
+            <div class="inner-blog">
+                <div class="inner-blog-content">
+                    <a href=""><img src="Image/DaLat.jpg" alt=""></a>
+
+                </div>
+                <div class="inner-blog-title">
+                    <h2>Đà lạt</h2>
+                    <p>Với một khí hậu mát mẻ quanh năm, cùng thiên nhiên hùng vĩ, tráng lệ ảo .</p>
+                </div>
+
+            </div> -->
+
+
+            <div class="inner-blog">
+                <div class="inner-blog-content">
+                    <a href=""><img src="IMAGE/HoGuom.jpg" alt=""></a>
+
+                </div>
+                <div class="inner-blog-title">
+                    <h2>Hồ Gươm</h2>
+                    <p>Thủ Đô Hà Nội, vẻ đẹp cổ kính cùng với giao thương tấp nập. Đẹp đẽ muôn màu, đó là những gì mà 
+                        bản sắc của nơi đây mang lại, hãy cùng tận hưởng !
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="inner-blog">
+                <div class="inner-blog-content">
+                    <a href=""><img src="IMAGE/TaXua2.jpg" alt=""></a>
+
+                </div>
+                <div class="inner-blog-title">
+                    <h2>Tà xùa</h2>
+                    <p>Thủ Đô Hà Nội, vẻ đẹp cổ kính cùng với giao thương tấp nập. Đẹp đẽ muôn màu, đó là những gì mà 
+                        bản sắc của nơi đây mang lại, hãy cùng tận hưởng !
+                    </p>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+    <!-- section blog end -->
+
+    <!-- section booking -->
+    <div class="section-booking">
+
+    </div>
+
+
+    <!-- section booking end-->
+
+
+    <!-- section slide -->
+    <div class="section-slide">
+        <div class="section-header-slide">
+            <h1 class="section-title">Khám phá vùng trời mới</h1>
+            <p class="section-subtitle">Việt Nam tươi đẹp, hùng vĩ</p>
+        </div>
+        <div class="container">
+
+
+            <div class="slide" id="slide01">
+                <div class="card">
+                    <div id="img01" class="card__img"></div>
+                    <div class="card__content">
+                        <h1 class="card__content-header">Sông Nho Quế</h1>
+                        <p class="card__content-paragraph">Sông Nho Quế là một phụ lưu của sông Gâm. Sông bắt nguồn từ
+                            Trung Quốc có tên 南利河 Nán lì hé (sông Nam Lợi) hoặc 普梅河 Pǔ méi hé (sông Phổ Mai), khi chảy
+                            vào Việt Nam thì tạo ra một đoạn là biên giới Việt-Trung ở vùng cực bắc đất nước tại xã Lũng
+                            Cú và Má Lé, huyện Đồng Văn, sau đó chảy vào nội địa tỉnh Hà Giang .</p>
+                    </div>
+
+
+                </div>
+                <div class="card-position">
+                    <i class="fa-regular fa-circle-dot"></i>
+                    <i class="fa-regular fa-circle"></i>
+                    <i class="fa-regular fa-circle"></i>
+                    <i class="fa-regular fa-circle"></i>
+                    <i class="fa-regular fa-circle"></i>
+                </div>
+            </div>
+
+            <div class="slide" id="slide02">
+                <div class="card">
+                    <div id="img02" class="card__img"></div>
+                    <div class="card__content">
+                        <h1 class="card__content-header">Sapa</h1>
+                        <p class="card__content-paragraph">Nằm ở phía Tây Bắc của Việt Nam, thị xã Sa Pa có độ cao trung
+                            bình khoảng 1.500 m – 1.800 m so với mực nước biển, cách thành phố Lào Cai 33 km và 317 km
+                            tính từ Hà Nội. Ngoài con đường chính từ thành phố Lào Cai, để tới Sa Pa còn một tuyến giao
+                            thông khác, quốc lộ 4D nối từ xã Bình Lư, Tam Đường, Lai Châu</p>
+                    </div>
+
+
+                </div>
+                <div class="card-position">
+                    <i class="fa-regular fa-circle"></i>
+                    <i class="fa-regular fa-circle-dot"></i>
+                    <i class="fa-regular fa-circle"></i>
+                    <i class="fa-regular fa-circle"></i>
+                    <i class="fa-regular fa-circle"></i>
+                </div>
+            </div>
+
+            <div class="slide" id="slide03">
+                <div class="card">
+                    <div id="img03" class="card__img"></div>
+                    <div class="card__content">
+                        <h1 class="card__content-header">Cầu Vàng Đà nẵng</h1>
+                        <p class="card__content-paragraph">Cầu Vàng là tên một cây cầu bộ hành dài khoảng 150 m (khoảng
+                            490 ft) tại khu nghỉ dưỡng Bà Nà, Đà Nẵng, Việt Nam.[1][2] Nằm ở độ cao khoảng 1.414 m (so
+                            với mực nước biển) trên núi Bà Nà,[3][4] cầu nối liền trạm cáp treo với các khu vườn khác
+                            của khu nghỉ dưỡng. Ở giữa cầu có hai bàn tay lớn được thi công bằng lắp ráp khung xương và
+                            đắp vữa vào bên ngoài để tạo điểm nhấn cho cây cầu.</p>
+                    </div>
+                </div>
+                <div class="card-position">
+                    <i class="fa-regular fa-circle"></i>
+                    <i class="fa-regular fa-circle"></i>
+                    <i class="fa-regular fa-circle-dot"></i>
+                    <i class="fa-regular fa-circle"></i>
+                    <i class="fa-regular fa-circle"></i>
+
+                </div>
+            </div>
+
+            <div class="slide" id="slide04">
+                <div class="card">
+                    <div id="img04" class="card__img"></div>
+                    <div class="card__content">
+                        <h1 class="card__content-header">Kinh thành Huế</h1>
+                        <p class="card__content-paragraph">
+                            Kinh thành Huế, cố cung Huế hay Thuận Hóa kinh thành (chữ Hán: 順化京城) là một tòa thành ở cố
+                            đô Huế, nơi đóng đô của triều đại nhà Nguyễn trong suốt 143 năm từ 1802 đến khi thoái vị vào
+                            năm 1945. Hiện nay, Kinh thành Huế là một trong số các di tích thuộc cụm Quần thể di tích Cố
+                            đô Huế được UNESCO công nhận là Di sản Văn hoá Thế giới.
+                        </p>
+                    </div>
+                </div>
+                <div class="card-position">
+                    <i class="fa-regular fa-circle"></i>
+                    <i class="fa-regular fa-circle"></i>
+                    <i class="fa-regular fa-circle"></i>
+                    <i class="fa-regular fa-circle-dot"></i>
+                    <i class="fa-regular fa-circle"></i>
+
+                </div>
+            </div>
+
+            <div class="slide" id="slide05">
+                <div class="card">
+                    <div id="img05" class="card__img"></div>
+                    <div class="card__content">
+                        <h1 class="card__content-header">Phố cổ Hội An</h1>
+                        <p class="card__content-paragraph">
+                            Phố cổ Hội An là một đô thị cổ nằm ở hạ lưu sông Thu Bồn, thuộc vùng đồng bằng ven biển tỉnh
+                            Quảng Nam, Việt Nam, cách thành phố Đà Nẵng khoảng 30 km về phía Nam. Nhờ những yếu tố địa
+                            lý và khí hậu thuận lợi, Hội An từng là một thương cảng quốc tế sầm uất, nơi gặp gỡ của
+                            những thuyền buôn Nhật Bản, Trung Quốc và phương Tây trong suốt thế kỷ XVII và XVIII.
+                        </p>
+                    </div>
+                </div>
+                <div class="card-position">
+                    <i class="fa-regular fa-circle"></i>
+                    <i class="fa-regular fa-circle"></i>
+                    <i class="fa-regular fa-circle"></i>
+                    <i class="fa-regular fa-circle"></i>
+                    <i class="fa-regular fa-circle-dot"></i>
+                </div>
+            </div>
+            <!-- Add more slides as needed -->
+        </div>
+
+        <!-- Navigation buttons -->
+        <div class="prevnext">
+            <button id="prev" class="prevnext-button">↑</button>
+            <button id="next" class="prevnext-button">↓</button>
+        </div>
+    </div>
+
+    <!-- section slide end -->
+
+
+
+
+    <!-- section text high light -->
+    <div class="section-highlight">
+        <h1 style="text-align: center; padding: 30px;">Welcome to Viet Travel</h1>
+        <div class="container">
+            <article>
+                <img src="Image/NuiRung.jpg" alt="">
+                <div class="content">
+                    <h1>Lịch sử Việt Nam</h1>
+                    <p>
+                        Lãnh thổ Việt Nam xuất hiện con người sinh sống từ thời đại đồ đá cũ,
+                         khởi đầu với các nhà nước Văn Lang, Âu Lạc. 
+                         Âu Lạc bị nhà Triệu ở phương Bắc thôn tính vào đầu thế kỷ thứ 2 TCN sau đó là thời kỳ Bắc thuộc
+                          kéo dài hơn một thiên niên kỷ. Chế độ quân chủ độc lập được tái lập sau chiến thắng của Ngô Quyền 
+                          trước nhà Nam Hán, mở đường cho các triều đại độc lập kế tục, nhiều lần chiến thắng trước các
+                           cuộc chiến tranh xâm lược từ phương Bắc đồng thời dần mở rộng về phía nam. Thời kỳ Bắc thuộc
+                            cuối cùng kết thúc sau chiến thắng trước nhà Minh của nghĩa quân Lam Sơn.
+                    </p>
+                    <p>
+                        Đến thời cận đại, Việt Nam lần lượt trải qua các giai đoạn Pháp thuộc và Nhật thuộc. Sau khi đánh bại và buộc Nhật Bản đầu hàng,
+                         phe Đồng Minh tạo điều kiện cho Pháp thu hồi Liên bang Đông Dương
+                        <mark> Kết thúc Thế chiến II,
+                             Việt Nam chịu sự can thiệp của các nước Đồng Minh bao gồm Anh,
+                              Pháp (miền Nam), Trung Hoa Dân Quốc (miền Bắc). Nhà nước Việt Nam Dân
+                               chủ Cộng hòa do Việt Minh lãnh đạo ra đời khi Hồ Chí Minh tuyên bố độc lập vào ngày 2 tháng 9
+                                năm 1945 sau thành công của Cách mạng Tháng Tám và chiến thắng Liên hiệp Pháp cùng Quốc gia Việt
+                                Nam do Pháp hậu thuẫn trong chiến tranh Đông Dương lần thứ nhất</mark>  Sự kiện này dẫn tới Hiệp định Genève 
+                                (1954) được ký kết và Việt Nam bị chia cắt thành hai vùng tập kết quân sự, lấy ranh giới là vĩ tuyến 17. 
+                    </p>
+                    
+                    <h2>Khí hậu Việt Nam</h2>
+                    <p>
+                        Mùa mưa bắt đầu từ cuối tháng 4 / đầu tháng 5 và kéo dài đến tháng 10.[8] Vào mùa hè, hình thái gió chung là gió Tây Nam ở các vùng phía Nam của Việt Nam và gió Đông Nam ở phía Bắc.
+                         <mark> Các khối khí chủ yếu ở Việt Nam là khối xích đạo và khối nhiệt đới bắt nguồn từ hệ thống áp cao ở Nam bán cầu</mark>
+                         và khối nhiệt đới biển bắt nguồn từ hệ thống áp cao cận nhiệt đới ở Thái Bình Dương (áp cao cận nhiệt đới Thái Bình Dương).
+                    </p>
+                    <p>
+                        Mùa Xuân và mùa Thu là mùa chuyển tiếp. Hoàn lưu khí quyển trong những mùa này thể hiện sự chuyển tiếp giữa mùa đông - mùa hè & mùa hè -mùa đông tương ứng.
+                    </p>
+                    <p>
+                        Nhiệt độ trung bình hàng năm trong cả nước, dựa trên dữ liệu khí tượng từ các trạm thời tiết nằm trong khoảng từ 12,8 đến 27,7 °C (55 đến 82 °F) ở Hoàng Liên Sơn.
+                         <mark>Ở độ cao lớn nhất trong dãy Hoàng Liên Sơn, nhiệt độ trung bình hàng năm chỉ là 8 °C (46 °F)[7] Khi nhiệt độ thay đổi theo độ cao,
+                             nhiệt độ giảm 0,5 °C (1 °F) cho mỗi lần tăng độ cao 100 mét (328 ft).</mark> 
+                             Nhiệt độ trung bình hàng năm thấp nhất được tìm thấy ở các khu vực miền núi.
+                    </p>
+                    <p>
+                        Lượng mưa trung bình hàng năm trong cả nước dao động từ 700 đến 5.000 mm (28 đến 197 in)
+                         mặc dù hầu hết các nơi ở Việt Nam nhận được từ 1.400 đến 2.400 mm (55 đến 94 in).
+                          Phần lớn lượng mưa xảy ra trong mùa mưa, chiếm 80% –90% lượng mưa hàng năm.[3] Nhìn chung,
+                         các vùng phía bắc của đất nước nhận được nhiều mưa hơn các vùng phía nam của đất nước. <mark>ố ngày mưa trung bình hàng năm từ 60 đến 200 ngày, 
+                            trong đó hầu hết các ngày có lượng mưa trung bình dưới 5 mm (0,20 in).</mark> 
+                            Ở các đỉnh núi cao nhất phía Bắc như Sa Pa, Tam Đảo, Hoàng Liên Sơn có thể xảy ra tuyết rơi.
+                    </p>
+                    <p>
+                        Lượng mưa trung bình hàng năm trong cả nước dao động từ 700 đến 5.000 mm (28 đến 197 in)
+                         mặc dù hầu hết các nơi ở Việt Nam nhận được từ 1.400 đến 2.400 mm (55 đến 94 in).
+                          Phần lớn lượng mưa xảy ra trong mùa mưa, chiếm 80% –90% lượng mưa hàng năm.[3] Nhìn chung,
+                         các vùng phía bắc của đất nước nhận được nhiều mưa hơn các vùng phía nam của đất nước. <mark>ố ngày mưa trung bình hàng năm từ 60 đến 200 ngày, 
+                            trong đó hầu hết các ngày có lượng mưa trung bình dưới 5 mm (0,20 in).</mark> 
+                            các đỉnh núi cao nhất phía Bắc như Sa Pa, Tam Đảo, Hoàng Liên Sơn có thể xảy ra tuyết rơi.
+                    </p>
+                </div>
+            </article>
+        </div>
+    </div>
+    <div class="section-vietnamvideo">
+        <div class="container">
+            <h2>Việt Nam ra sao ?</h2>
+            <p>
+                Vậy hãy cùng tìm hiểu Việt Nam thực sự trông thế nào? làm sao để tìm kiếm các trang phục truyền thống
+                hay tìm những món ăn đặc sản của Việt Nam ?
+            </p>
+            <div class="videos">
+                <div class="video-item">
+                    <video width="400" height="180" autoplay >
+                        <source src="VIDEO/vinhhalong.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <h3>Việt nam như nào nếu bạn nhìn từ trên cao ?</h3>
+                </div>
+                <div class="video-item">
+                    <video width="400" height="180" autoplay >
+                        <source src="VIDEO/Theme4.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <h3>Việt nam như nào nếu bạn ở phổ cổ ?</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="footer-container">
+            <div class="footer-column">
+                <h3>Thông tin</h3>
+                <ul>
+                    <li><a href="#">VietTravel.com</a></li>
+                    <li><a href="#">Bản quyền</a></li>
+                    <li><a href="#">Chứng nhận</a></li>
+                    <li><a href="#">Giấy phép</a></li>
+                    <li><a href="#">Trung tâm bảo mật</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Liên hệ</h3>
+                <ul>
+                    <li><a href="#">Gọi ngay</a></li>
+                    <li><a href="#">Tin mới</a></li>
+                    <li><a href="#">Truyền thông</a></li>
+                    <li><a href="#">Hỗ trợ</a></li>
+                    <li><a href="#">Đặt tour</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Tải về</h3>
+                <ul>
+                    <li><a href="#">Ảnh và video</a></li>
+                    <li><a href="#">Ứng dung</a></li>
+                    <li><a href="#">Bản đồ Việt</a></li>
+                </ul>
+            </div>
+            <div class="footer-column follow-us">
+                <h3>Theo dõi</h3>
+                <ul>
+                    <li><a href="#"><i class="fa-brands fa-facebook"></i></a></li>
+
+                    <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
+                    <li><a href="#"><i class="fa-brands fa-youtube"></i></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="footer-logo">
+
+            </div>
+            <p>Copyright © 2024 VietTravel</p>
+            <div class="powered-by">
+                <p>Powered by ThaiVan</p>
+            </div>
+        </div>
+    </footer>
+
+
+
+    <!-- section slide -->
+
+
+
+
+
+
+
+    <!-- test showing tours -->
+     <div class="showing-tours" id="showing-tours">
+
+
+
+     </div>
+    <!-- test showing tours end-->
+
+
+
+    <!-- https://www.visitnorway.com/ -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenMax.min.js"></script>
+    <script src="JS/function.js"></script>
+</body>
+
+</html>

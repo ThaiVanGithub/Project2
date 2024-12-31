@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Tours Manager </title>
+    <link rel="stylesheet" href="CSS/base.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="CSS/tourM.css">
+
+</head>
+
+<body>
+    <header>
+        <h2> <a href="adminstrator.html"> Quay lai </a></h2>
+    </header>
+    <main class="main-container">
+        <h1 class="page-title">Quan ly tours</h1>
+        <div class="filters">
+            <input type="text" id="search-bar" placeholder="Tìm kiếm theo tên tour..." oninput="filterTours()">
+            <select id="sort-options" onchange="sortTours()">
+                <option value="">Sắp xếp</option>
+                <option value="price-asc">Giá tăng dần</option>
+                <option value="price-desc">Giá giảm dần</option>
+            </select>
+        </div>
+        <div class="tours-grid" id="tours-container">
+            <!-- Tour card template - This will be repeated for each tour -->
+            <article class="tour-card">
+                <img src="/api/placeholder/400/320" alt="Tour Name" class="tour-image">
+                <div class="tour-content">
+                    <h2 class="tour-title">Tour Name</h2>
+                    <p class="tour-description">No description available</p>
+                    <div class="tour-meta">
+                        <span class="tour-meta-item">
+                            <i class="fas fa-calendar"></i>
+                            7 days
+                        </span>
+                        <span class="tour-meta-item">
+                            <i class="fas fa-users"></i>
+                            Max 12 people
+                        </span>
+                    </div>
+                    <span class="tour-status status-available">Available</span>
+                    <p class="tour-price">$999</p>
+                    <div class="tour-buttons">
+
+                        <button class="btn btn-primary" onclick="editTour(1)">Sửa</button>
+                        <button class="btn btn-primary btn-delete" onclick="deleteTour(1)">Xóa</button>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </main>
+    <div class="form-container">
+        <h2>Thêm Tour</h2>
+        <form id="tour-form">
+            <div class="form-group">
+                <label for="tour-name">Tên Tour</label>
+                <input type="text" id="tour-name" placeholder="Nhập tên tour" required>
+            </div>
+            <div class="form-group">
+                <label for="tour-description">Mô tả</label>
+                <textarea id="tour-description" placeholder="Nhập mô tả tour" rows="3"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="tour-category">Danh mục</label>
+                <select id="tour-category" required>
+                    <option value="" disabled selected>Chọn danh mục</option>
+                    <option value="Nature">Nature</option>
+                    <option value="Adventure">Adventure</option>
+                    <option value="Culture">Culture</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="tour-price">Giá</label>
+                <input type="number" id="tour-price" placeholder="Nhập giá tour" required>
+            </div>
+            <div class="form-group">
+                <label for="tour-start-date">Ngày bắt đầu</label>
+                <input type="datetime-local" id="tour-start-date" required>
+            </div>
+            <div class="form-group">
+                <label for="tour-hotel">Khách sạn</label>
+                <select id="tour-hotel" required>
+                    <option value="" disabled selected>Chọn khách sạn</option>
+                    <option value="1">Hanoi Luxury Hotel</option>
+                    <option value="2">Danang Beach Resort</option>
+                    <option value="3">Saigon Star Hotel</option>
+                    <option value="4">Sapa View Hotel</option>
+                    <option value="5">Halong Bay Resort</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="tour-guide">Hướng dẫn viên</label>
+                <select id="tour-guide" required>
+                    <option value="" disabled selected>Chọn hướng dẫn viên</option>
+                    <option value="1">Nguyen Van A</option>
+                    <option value="2">Nguyen Van B</option>
+                    <option value="3">Nguyen Van C</option>
+                    <option value="4">Nguyen Van D</option>
+                    <option value="5">Nguyen Van E</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="tour-vehicle">Phương tiện</label>
+                <select id="tour-vehicle" required>
+                    <option value="" disabled selected>Chọn phương tiện</option>
+                    <option value="1">Bus 01</option>
+                    <option value="2">Bus 02</option>
+                    <option value="3">Van 01</option>
+                    <option value="4">Car 01</option>
+                    <option value="5">Limousine 01</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="tour-image">URL Hình ảnh</label>
+                <input type="url" id="tour-image" placeholder="Nhập URL hình ảnh">
+            </div>
+            <button type="button" class="btn btn-primary" onclick="addTour()">Thêm Tour</button>
+            <button type="button" class="btn btn-primary" onclick="updateTour()">Lưu</button>
+        </form>
+    </div>
+    <script>
+        // Chuyển hướng đến trang chi tiết tour
+        function viewTourDetails(tourId) {
+            window.location.href = `/tour-details/${tourId}`;
+        }
+
+        // Chuyển hướng đến trang đặt tour
+        function bookTour(tourId) {
+            window.location.href = `/book-tour/${tourId}`;
+        }
+
+        let tours = []; // Mảng lưu trữ danh sách tour
+
+        // Hàm fetch tours từ API 
+        async function fetchTours() {
+            try {
+                const response = await fetch('http://localhost:3000/api/tours/');
+                let fetchedTours = await response.json();
+                // Lọc bỏ tours trùng lặp dựa trên TourID
+                tours = [...new Map(fetchedTours.map(tour => [tour.TourID, tour])).values()];
+                console.log('Unique tours:', tours);
+                displayTours(tours);
+            } catch (error) {
+                console.error('Error fetching tours:', error);
+            }
+        }
+
+        // Hàm hiển thị danh sách tour
+        function displayTours(toursToDisplay) {
+            const toursContainer = document.getElementById('tours-container');
+            const tourCards = toursToDisplay.map(tour => `
+                    <article class="tour-card">
+                        <img src="${tour.Image || '/api/placeholder/400/320'}" alt="${tour.Name}" class="tour-image">
+                        <div class="tour-content">
+                            <h2 class="tour-title">${tour.Name}</h2>
+                            <p class="tour-description">${tour.Description || 'No description available'}</p>
+                            <div class="tour-meta">
+                                <span class="tour-meta-item">
+                                    <i class="fas fa-calendar"></i>
+                                    ${new Date(tour.StartDate).toLocaleDateString()}
+                                </span>
+                            </div>
+                            <span class="tour-status ${tour.Status.toLowerCase() === 'available' ? 'status-available' : 'status-full'}">${tour.Status}</span>
+                            <p class="tour-price">$${tour.Price}</p>
+                            <div class="tour-buttons">
+                                
+                                <button class="btn btn-primary" onclick="editTour(${tour.TourID})">Sửa</button>
+                                <button class="btn btn-primary btn-delete" onclick="deleteTour(${tour.TourID})">Xóa</button>
+                            </div>
+                        </div>
+                    </article>
+                `);
+            toursContainer.innerHTML = tourCards.join('');
+        }
+
+        // Hàm lọc tour dựa trên tìm kiếm
+        function filterTours() {
+            const searchInput = document.getElementById('search-bar').value.toLowerCase();
+            const filteredTours = tours.filter(tour =>
+                tour && tour.Name && tour.Name.toLowerCase().includes(searchInput)
+            );
+            displayTours(filteredTours);
+        }
+
+        function sortTours() {
+            const sortOption = document.getElementById('sort-options').value;
+            let sortedTours = [...tours];
+            if (sortOption === 'price-asc') {
+                sortedTours.sort((a, b) => parseFloat(a.Price) - parseFloat(b.Price));
+            } else if (sortOption === 'price-desc') {
+                sortedTours.sort((a, b) => parseFloat(b.Price) - parseFloat(a.Price));
+            }
+            displayTours(sortedTours);
+        }
+
+        async function deleteTour(tourId) {
+            if (confirm("Bạn có chắc chắn muốn xóa tour này không?")) {
+                try {
+                    const response = await fetch(`http://localhost:3000/api/tours/${tourId}`, {
+                        method: "DELETE",
+                    });
+
+                    console.log('Response:', response); // Log toàn bộ response
+                    console.log('Response status:', response.status);
+
+                    const responseText = await response.text();
+                    console.log('Response text:', responseText);
+
+                    if (response.ok) {
+                        alert("Xóa tour thành công!");
+                        // Xóa tour khỏi danh sách và giao diện
+                        tours = tours.filter(tour => tour.TourID !== tourId);
+                        displayTours(tours);
+                        window.location.reload();
+                    }
+
+                } finally {
+                    // Reload lại giao diện hoặc danh sách tours
+                    displayTours(tours); // Đảm bảo luôn cập nhật lại danh sách tours
+                    alert("Đã xóa tour.");
+                }
+                window.location.reload();
+            }
+        }
+
+        //Thêm tour
+
+        function addTour() {
+            // Lấy giá trị từ các trường trong form
+            const name = document.getElementById('tour-name').value;
+            const description = document.getElementById('tour-description').value;
+            const category = document.getElementById('tour-category').value;
+            const price = parseFloat(document.getElementById('tour-price').value);
+            let startDate = document.getElementById('tour-start-date').value;
+            const hotelId = document.getElementById('tour-hotel').value;
+            const guideId = document.getElementById('tour-guide').value;
+            const vehicleId = document.getElementById('tour-vehicle').value;
+            const image = document.getElementById('tour-image').value;
+
+            // Kiểm tra nếu các trường bắt buộc chưa được nhập
+            if (!name || !category || !price || !startDate || !hotelId || !guideId || !vehicleId) {
+                alert("Vui lòng điền đầy đủ thông tin tour!");
+                return;
+            }
+
+            // Chuyển đổi định dạng thời gian từ "YYYY-MM-DDTHH:MM" sang "YYYY-MM-DD HH:MM:SS"
+            startDate = startDate.replace("T", " ");  // Thay "T" bằng khoảng trắng
+
+            // Tạo đối tượng dữ liệu tour
+            const tourData = {
+                Name: name,
+                Description: description,
+                Category: category,
+                Price: price,
+                StartDate: startDate,  // Đảm bảo thời gian đã được chuyển đổi
+                HotelID: hotelId,
+                GuideID: guideId,
+                VehicleID: vehicleId,
+                Image: image || null // Nếu không có URL hình ảnh thì sẽ gửi null
+            };
+
+            // Gửi dữ liệu tới backend (API) qua HTTP POST
+            fetch('http://localhost:3000/api/tours/add', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(tourData)
+            })
+                .then(response => {
+                    console.log('Response status:', response.status);
+                    console.log('Response headers:', response.headers);
+                    return response.text(); // Use .text() instead of .json() to see raw response
+                })
+                .then(text => {
+                    console.log('Response body:', text);
+                    try {
+                        console.log(text);
+
+                        const data = JSON.parse(text);
+
+                        // Hiển thị thông báo thành công và tải lại trang
+                        alert('Thêm tour thành công!');
+                        location.reload();  // Tải lại trang
+                    } catch (parseError) {
+                        console.error('Parse error:', parseError);
+                    }
+                })
+                .catch(error => {
+                    console.error('Fetch error:', error);
+                });
+        }
+
+
+        //sửa tour
+        let currentTourId = null; // Biến lưu trữ ID của tour đang được chỉnh sửa
+
+        // Hàm chỉnh sửa tour
+        function editTour(tourId) {
+            // Lưu lại ID của tour
+            currentTourId = tourId;
+
+            // Gửi yêu cầu GET để lấy thông tin tour từ server
+            fetch(`http://localhost:3000/api/tours/${tourId}`)
+                .then(response => response.json())
+                .then(tour => {
+                    // Kiểm tra nếu tour không tồn tại
+                    if (!tour) {
+                        throw new Error('Tour không tồn tại');
+                    }
+
+                    // Đổ dữ liệu tour lên form
+                    document.getElementById('tour-name').value = tour.Name || '';
+                    document.getElementById('tour-description').value = tour.Description || '';
+                    document.getElementById('tour-category').value = tour.Category || '';
+                    document.getElementById('tour-price').value = tour.Price || ''; // Thêm giá trị mặc định nếu không có giá trị
+                    document.getElementById('tour-start-date').value = tour.StartDate ? tour.StartDate.replace(' ', 'T') : ''; // Kiểm tra nếu StartDate tồn tại
+                    document.getElementById('tour-hotel').value = tour.HotelID || '';
+                    document.getElementById('tour-guide').value = tour.GuideID || '';
+                    document.getElementById('tour-vehicle').value = tour.VehicleID || '';
+                    document.getElementById('tour-image').value = tour.Image || '';
+                })
+                .catch(error => {
+                    console.error('Error fetching tour data:', error);
+                    alert('Không thể tải thông tin tour!');
+                });
+        }
+
+        // Hàm cập nhật tour
+        function updateTour() {
+            // Kiểm tra nếu không có tour đang chỉnh sửa
+            if (!currentTourId) {
+                alert('Không có tour nào đang được chỉnh sửa!');
+                return;
+            }
+
+            // Lấy giá trị từ form
+            const name = document.getElementById('tour-name').value.trim();
+            const description = document.getElementById('tour-description').value.trim();
+            const category = document.getElementById('tour-category').value.trim();
+            const priceInput = document.getElementById('tour-price').value.trim();
+            let startDate = document.getElementById('tour-start-date').value.trim();
+            const hotelId = document.getElementById('tour-hotel').value.trim();
+            const guideId = document.getElementById('tour-guide').value.trim();
+            const vehicleId = document.getElementById('tour-vehicle').value.trim();
+            const image = document.getElementById('tour-image').value.trim();
+
+            // Kiểm tra các trường bắt buộc
+            if (!name || !category || !priceInput || !startDate || !hotelId || !guideId || !vehicleId) {
+                alert('Vui lòng điền đầy đủ thông tin tour!');
+                return;
+            }
+
+            // Chuyển giá trị price sang số và kiểm tra tính hợp lệ
+            const price = parseFloat(priceInput);
+            if (isNaN(price) || price <= 0) {
+                alert('Vui lòng nhập giá hợp lệ!');
+                return;
+            }
+
+            // Kiểm tra ngày bắt đầu hợp lệ
+            if (isNaN(Date.parse(startDate))) {
+                alert('Vui lòng chọn ngày bắt đầu hợp lệ!');
+                return;
+            }
+
+            // Chuyển đổi định dạng thời gian từ "YYYY-MM-DDTHH:MM" sang "YYYY-MM-DD HH:MM:SS"
+            startDate = startDate.replace('T', ' ');
+
+            // Tạo đối tượng dữ liệu tour
+            const updatedTour = {
+                Name: name,
+                Description: description,
+                Category: category,
+                Price: price,
+                StartDate: startDate,
+                HotelID: hotelId,
+                GuideID: guideId,
+                VehicleID: vehicleId,
+                Image: image || '' // Gửi chuỗi rỗng nếu không có URL hình ảnh
+            };
+
+            // Gửi yêu cầu PUT để cập nhật dữ liệu
+            fetch(`http://localhost:3000/api/tours/${currentTourId}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(updatedTour)
+            })
+                .then(response => {
+                    // Kiểm tra nếu phản hồi từ API không thành công
+                    if (!response.ok) {
+                        return response.json().then(err => {
+                            throw new Error(err.message || 'Có lỗi xảy ra khi cập nhật tour!');
+                        });
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    alert('Cập nhật tour thành công!');
+                    // Cập nhật giao diện hoặc tải lại dữ liệu mà không cần reload toàn bộ trang
+                    refreshTourList(); // Giả sử có hàm làm mới danh sách tour
+                })
+                .catch(error => {
+                    console.error('Error updating tour:', error.message);
+                    alert(`Cập nhật thất bại: ${error.message}`);
+                });
+        }
+
+        // Hàm giả sử để làm mới danh sách tour
+        function refreshTourList() {
+            // Gọi API hoặc cập nhật DOM trực tiếp
+            console.log('Danh sách tour đã được làm mới.');
+            // Gọi API để lấy lại danh sách tour sau khi cập nhật
+            fetch('http://localhost:3000/api/tours')
+                .then(response => response.json())
+                .then(data => {
+                    // Cập nhật giao diện với danh sách tour mới
+                    console.log('Danh sách tour:', data);
+                    // Ở đây bạn có thể xử lý việc hiển thị danh sách tour trên giao diện (ví dụ: hiển thị vào bảng, danh sách, v.v.)
+                })
+                .catch(error => {
+                    console.error('Error refreshing tour list:', error);
+                });
+        }
+
+        document.addEventListener('DOMContentLoaded', fetchTours);
+
+    </script>
+</body>
+
+</html>

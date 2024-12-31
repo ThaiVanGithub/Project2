@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f4f8;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .profile {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .profile img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 2px solid #4CAF50;
+            margin-bottom: 15px;
+        }
+
+        .profile h2 {
+            font-size: 22px;
+            color: #333;
+            margin: 10px 0;
+        }
+
+        .profile p {
+            font-size: 16px;
+            margin: 8px 0;
+            color: #555;
+        }
+
+        .info {
+            margin-top: 20px;
+        }
+
+        .info div {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .info div:last-child {
+            border-bottom: none;
+        }
+
+        .info div span {
+            font-size: 16px;
+            color: #333;
+        }
+
+        .info div span.label {
+            font-weight: bold;
+        }
+
+        .footer {
+            padding: 15px;
+            text-align: center;
+            background-color: #f9f9f9;
+            font-size: 14px;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+    <h2><a href="allTours.html">Quay lại</a></h2>
+    <div class="container">
+        <div class="header">
+            <h1>User Profile</h1>
+        </div>
+        <div class="profile">
+            <img id="avatar" src="default-avatar.jpg" alt="Avatar">
+            <h2 id="fullname">Loading...</h2>
+        </div>
+        <div class="info">
+            <div>
+                <span class="label">Phone:</span>
+                <span id="phone">Loading...</span>
+            </div>
+            <div>
+                <span class="label">Email:</span>
+                <span id="email">Loading...</span>
+            </div>
+            <div>
+                <span class="label">Address:</span>
+                <span id="address">Loading...</span>
+            </div>
+            <div>
+                <span class="label">Role:</span>
+                <span id="role">Loading...</span>
+            </div>
+        </div>
+        <div class="footer">
+            <p>© 2024 Your Website. All rights reserved.</p>
+        </div>
+    </div>
+
+    <script>
+        async function fetchUserProfile() {
+            try {
+                // Lấy UserID từ localStorage
+                const userData = JSON.parse(localStorage.getItem('user'));
+                // if (!userData || !userData.UserID) {
+                //     alert('User not logged in');
+                //     window.location.href = '/login.html'; // Chuyển hướng về trang đăng nhập
+                //     return;
+                // }
+
+                // Gọi API để lấy thông tin user
+                const response = await fetch(`http://localhost:3000/api/users/${userData.userId}`);
+                if (!response.ok) {
+                    throw new Error('Failed to fetch user profile');
+                }
+                const user = await response.json();
+
+                // Hiển thị thông tin user
+                document.getElementById('fullname').textContent = user.FullName;
+                document.getElementById('phone').textContent = user.PhoneNumber || 'N/A';
+                document.getElementById('email').textContent = user.Email || 'N/A';
+                document.getElementById('address').textContent = user.Address || 'N/A';
+                document.getElementById('role').textContent = user.Role;
+
+                // Hiển thị avatar
+                const avatarElement = document.getElementById('avatar');
+                avatarElement.src = user.Avatar || 'default-avatar.jpg';
+                avatarElement.alt = `${user.FullName}'s Avatar`;
+            } catch (error) {
+                console.error('Error fetching user profile:', error);
+                alert('Failed to load user profile');
+            }
+        }
+
+        // Gọi hàm khi tải trang
+        fetchUserProfile();
+    </script>
+</body>
+</html>

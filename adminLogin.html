@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login</title>
+    <link rel="stylesheet" href="CSS/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+    <div class="admin-login-container">
+        <form id="adminLoginForm" class="form">
+            <h1 class="form__title">Admin Đăng nhập</h1>
+            <div class="form__group">
+                <input type="email" id="admin-email" class="form__input" placeholder="Email" required>
+            </div>
+            <div class="form__group">
+                <input type="password" id="admin-password" class="form__input" placeholder="Mật khẩu" required>
+            </div>
+            <div class="form__buttons">
+                <button type="button" id="adminLoginButton" class="form__button">Đăng nhập</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // Định nghĩa API URL
+        const adminLoginAPI = 'http://localhost:3000/api/users/login';
+
+        // Hàm gửi yêu cầu đăng nhập Admin
+        async function loginAdmin() {
+            const email = document.getElementById('admin-email').value;
+            const password = document.getElementById('admin-password').value;
+
+            if (!email || !password) {
+                alert('Vui lòng điền đầy đủ email và mật khẩu!');
+                return;
+            }
+
+            try {
+                // Gửi yêu cầu POST đến server
+                const response = await fetch(adminLoginAPI, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ email, password })
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    // Kiểm tra vai trò người dùng
+                    if (result.role === 'Admin') {
+                        alert('Đăng nhập thành công!');
+                        localStorage.setItem('admin', JSON.stringify(result));
+                        // Chuyển hướng tới trang admin
+                        window.location.href = 'adminDashboard.html';
+                    } else {
+                        alert('Bạn không có quyền truy cập!');
+                    }
+                } else {
+                    alert(result.message || 'Đăng nhập thất bại!');
+                }
+            } catch (error) {
+                console.error('Lỗi khi đăng nhập:', error);
+                alert('Có lỗi xảy ra. Vui lòng thử lại sau.');
+            }
+        }
+
+        // Gắn sự kiện cho nút "Đăng nhập"
+        document.getElementById('adminLoginButton').addEventListener('click', loginAdmin);
+
+        // Kiểm tra tự động chuyển hướng nếu đã đăng nhập trước đó
+        window.onload = function () {
+            const admin = localStorage.getItem('admin');
+            if (admin) {
+                window.location.href = 'adminstrator.html';
+            }
+        };
+    </script>
+</body>
+
+</html>

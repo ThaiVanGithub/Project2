@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tour Listings</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="CSS/variable.css">
+    <link rel="stylesheet" href="CSS/style.css">
+    <link rel="stylesheet" href="CSS/base.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Roboto+Slab:wght@100..900&family=Style+Script&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="CSS/allTours.css">
+
+
+</head>
+
+<body>
+    <header>
+        <div class="container">
+
+            <!-- Phan logo va ten -->
+            <div class="header-logo">
+                <a href="index.html"><img
+                        src="https://product.hstatic.net/200000313235/product/2_fb851af8490845d4904efc103c09894c.jpg"
+                        alt="la-co-Viet-Nam"></a>
+                <h1><a href="index.html">Vtravel</a></h1>
+            </div>
+
+            <!-- Navigation -->
+            <div class="header-navigation">
+                <ul>
+                    <li id="bookTour"><a href="#">Tư vấn</a></li>
+                    <li id="findHotel"><a href="#">Dịch vụ</a></li>
+                    <li id="talk"><a href="#">Liên hệ</a></li>
+                </ul>
+            </div>
+            <!-- menu -->
+            <div class="header-menu">
+                <a href="#"><i class="fa-solid fa-phone"></i></a>
+                <a href="profileUser.html"><i class="fa-solid fa-user"></i></a>
+                <a id="showMenu" class="showMenu" href="#"><i class="fa-solid fa-bars"></i></a>
+                <div class="listMenu hide">
+
+                    <button id="closedMenu">x</button>
+                    <h3>Danh mục</h3>
+
+                    <ul>
+                        <li><a href="logIn.html" id="logoutButton"><i class="fa-solid fa-right-from-bracket"></i></a></li>
+                        <li><a href="logIn.html">Tư vấn</a></li>
+                        <li><a href="tourBooked.html">Tour đã đặt</a></li>
+                        <li><a href="#">Thuê xe</a></li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main class="main-container">
+        <h1 class="page-title">Tours hiện có</h1>
+        <div class="filters">
+            <input type="text" id="search-bar" placeholder="Tìm kiếm theo tên tour..." oninput="filterTours()">
+            <select id="sort-options" onchange="sortTours()">
+                <option value="">Sắp xếp</option>
+                <option value="price-asc">Giá tăng dần</option>
+                <option value="price-desc">Giá giảm dần</option>
+            </select>
+        </div>
+
+        <div class="tours-grid" id="tours-container">
+            <!-- Tour card template - This will be repeated for each tour -->
+
+            <div class="tour-meta">
+                <span class="tour-meta-item">
+                    <i class="fas fa-calendar"></i>
+                    7 ngày
+                </span>
+                <span class="tour-meta-item">
+                    <i class="fas fa-users"></i>
+                    Tối đa 12 người
+                </span>
+            </div>
+
+            <span class="tour-status status-available">Available</span>
+            <p class="tour-price">$999</p>
+
+            <div class="tour-buttons">
+                <button class="btn btn-secondary" id="view-details-btn" onclick="viewTourDetails(1)">View
+                    Details</button>
+                <button class="btn btn-primary" id="book-tour-btn" onclick="bookTour(1)">Book Now</button>
+            </div>
+        </div>
+        </article>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-column">
+                <h3>Thông tin</h3>
+                <ul>
+                    <li><a href="#">VietTravel.com</a></li>
+                    <li><a href="#">Bản quyền</a></li>
+                    <li><a href="#">Chứng nhận</a></li>
+                    <li><a href="#">Giấy phép</a></li>
+                    <li><a href="#">Trung tâm bảo mật</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Liên hệ</h3>
+                <ul>
+                    <li><a href="#">Gọi ngay</a></li>
+                    <li><a href="#">Tin mới</a></li>
+                    <li><a href="#">Truyền thông</a></li>
+                    <li><a href="#">Hỗ trợ</a></li>
+                    <li><a href="#">Đặt tour</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Tải về</h3>
+                <ul>
+                    <li><a href="#">Ảnh và video</a></li>
+                    <li><a href="#">Ứng dung</a></li>
+                    <li><a href="#">Bản đồ Việt</a></li>
+                </ul>
+            </div>
+            <div class="footer-column follow-us">
+                <h3>Theo dõi</h3>
+                <ul>
+                    <li><a href="#"><i class="fa-brands fa-facebook"></i></a></li>
+
+                    <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
+                    <li><a href="#"><i class="fa-brands fa-youtube"></i></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="footer-logo">
+
+            </div>
+            <p>Copyright © 2024 VietTravel</p>
+            <div class="powered-by">
+                <p>Powered by ThaiVan</p>
+            </div>
+        </div>
+    </footer>
+
+
+    
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenMax.min.js"></script>
+    <script src="JS/function.js"></script>
+    <script src="JS/allTours.js"></script>
+</body>
+
+</html>

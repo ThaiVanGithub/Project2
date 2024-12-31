@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang quản trị</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Roboto+Slab:wght@100..900&family=Style+Script&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="CSS/base.css">
+</head>
+<style>
+
+
+
+/* Header styles */
+header {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: navy;
+    color: white;
+}
+
+header .log-out a {
+    display: flex;
+    color: rgb(255, 255, 255);
+    font-size: 20px;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+header .log-out a:hover {
+    color: rgb(195, 190, 191);
+}
+
+header .header-icon i {
+    font-size: 30px;
+    padding: 30px;
+}
+
+.header .header-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Main styles */
+main {
+    display: flex;
+}
+
+main .side-bar {
+    width: 20%;
+    background-color: rgba(244, 244, 244, 0.66);
+    padding: 0;
+    height: 1000px;
+}
+
+main .side-bar ul li {
+    padding: 10px;
+    list-style: none;
+}
+
+main .main-section {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+}
+
+main .main-section .container {
+    flex-direction: column;
+}
+
+main .main-section .container .contain-manage {
+    display: flex;
+    justify-content: space-between;
+    background-color: rgb(35, 35, 39);
+    color: rgb(254, 254, 254);
+    padding: 15px;
+   
+    transition: border-radius 0.4s ease-in-out, color 0.4s ease-in-out 0.2s;
+}
+
+main .main-section .container .contain-manage .users-manager, 
+main .main-section .container .contain-manage .tours-manager, 
+main .main-section .container .contain-manage .setting {
+    border: 1px solid white;
+    padding: 20px;
+  
+    transition: border-radius 0.4s ease-in-out, color 0.4s ease-in-out 0.2s;
+}
+main .main-section .container .contain-manage .users-manager h5, 
+main .main-section .container .contain-manage .tours-manager h5, 
+main .main-section .container .contain-manage .setting h5{
+    color: white;
+}
+
+
+main .main-section .container .contain-manage .users-manager:hover, 
+main .main-section .container .contain-manage .tours-manager:hover, 
+main .main-section .container .contain-manage .setting:hover {
+    border: 1px solid white;
+    padding: 20px;
+    border-radius: 20px;
+    background-color: #000000;
+    color: rgb(255, 255, 255);
+}
+
+/* Chart styles */
+.chart-container {
+    width: 80%;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.chart {
+    display: flex;
+    align-items: flex-end;
+    height: 300px;
+    border-left: 2px solid #333;
+    border-bottom: 2px solid #333;
+    position: relative;
+}
+
+.chart::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -5px;
+    height: 100%;
+    border-right: 1px solid #ccc;
+}
+
+.chart-bar {
+    flex: 1;
+    margin: 0 10px;
+    background-color: #af724c;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.chart-bar:hover {
+    background-color: #c74444;
+}
+
+.chart-bar span {
+    display: block;
+    padding: 5px;
+    color: #fff;
+}
+
+.labels {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10px;
+}
+
+.labels div {
+    flex: 1;
+    text-align: center;
+}
+
+/* Circle chart styles */
+.circle-chart-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
+}
+
+.circle-chart {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: conic-gradient(
+        #4CAF50 0% 40%, 
+        #FFC107 40% 70%, 
+        #2196F3 70% 100%
+    );
+    position: relative;
+}
+
+.circle-chart::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 150px;
+    height: 150px;
+    background: #fff;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.legend {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    margin: 0 10px;
+}
+
+.legend-color {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+}
+
+.green { background-color: #4CAF50; }
+.yellow { background-color: #FFC107; }
+.blue { background-color: #2196F3; }
+
+</style>
+<body>
+    <header>
+        <div class="log-out">
+            <a href="#" id="logout-btn">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                <p>log out</p>
+            </a>
+        </div>
+        <div class="header-title">
+            <h1>Trang quản trị</h1>
+        </div>
+        <div class="header-icon">
+            <i class="fa-brands fa-github"></i>
+            <i class="fa-solid fa-gear"></i>
+            <i class="fa-solid fa-circle-down"></i>
+        </div>
+    </header>
+    <main>
+        <div class="side-bar">
+            <div class="container">
+                <ul>
+                    <h2>Tùy chọn</h2>
+                    <li>Quản trị</li>
+                    <li>Thống kê</li>
+                    <li>Phản hồi</li>
+                    <li>Chờ duyệt</li>
+                </ul>
+                <ul>
+                    <h2>Cài đặt</h2>
+                    <li>Cấu hình</li>
+                    <li>Giao diện</li>
+                    <li>Bình luận</li>
+                    <li>Chờ duyệt</li>
+                </ul>
+                <ul>
+                    <h2>Thống kê</h2>
+                    <li>Hiệu suất</li>
+                    <li>Giá trị</li>
+                    <li>Lợi Nhuận</li>
+                    <li>Chờ duyệt</li>
+                </ul>
+            </div>
+        </div>
+        <div class="main-section">
+            <div class="container">
+                <div class="contain-manage">
+                    <div class="users-manager">
+                        <a href="user-manager.html"><h5>QUẢN LÝ NGƯỜI DÙNG</h5></a>
+                    </div>
+                    <div class="tours-manager">
+                        <a href="tours-manager.html"><h5>QUẢN LÝ TOURS</h5></a>
+                    </div>
+                    <div class="setting">
+                       <a href="setting.html"> <h5>CẤU HÌNH</h5> </a>
+                    </div>
+                </div>
+                <div class="detail">
+                    <h1>Biểu Đồ Thống Kê</h1>
+                    <div class="chart-container">
+                        <div class="chart">
+                            <div class="chart-bar" style="height: 50%;">
+                                <span>50%</span>
+                            </div>
+                            <div class="chart-bar" style="height: 70%;">
+                                <span>70%</span>
+                            </div>
+                            <div class="chart-bar" style="height: 90%;">
+                                <span>90%</span>
+                            </div>
+                            <div class="chart-bar" style="height: 60%;">
+                                <span>60%</span>
+                            </div>
+                            <div class="chart-bar" style="height: 80%;">
+                                <span>80%</span>
+                            </div>
+                        </div>
+                        <div class="labels">
+                            <div>Tháng 1</div>
+                            <div>Tháng 2</div>
+                            <div>Tháng 3</div>
+                            <div>Tháng 4</div>
+                            <div>Tháng 5</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="circle-chart-container">
+                    <div class="circle-chart"></div>
+                </div>
+                <div class="legend">
+                    <div class="legend-item">
+                        <div class="legend-color green"></div>
+                        <span>40% - Dữ liệu A</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color yellow"></div>
+                        <span>30% - Dữ liệu B</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color blue"></div>
+                        <span>30% - Dữ liệu C</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        document.getElementById('logout-btn').addEventListener('click', function (e) {
+            e.preventDefault(); // Ngăn chuyển hướng mặc định
+            localStorage.clear(); // Xóa toàn bộ dữ liệu trong localStorage
+            window.location.href = 'logIn.html'; // Chuyển hướng về trang đăng nhập
+        });
+    </script>
+    
+</body>
+</html> 

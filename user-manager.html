@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Manager</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header>
+        <h2><a href="adminstrator.html">Trở lại</a></h2>
+    </header>
+
+    <div class="container">
+        <h1>Quản lý người dùng</h1>
+        <input type="text" id="searchInput" placeholder="Tìm kiếm theo tên..." onkeyup="searchUsers()">
+        <select id="sortSelect" onchange="sortUsers()">
+            <option value="name">Sắp xếp theo tên</option>
+            <option value="date">Sắp xếp theo ngày</option>
+        </select>
+
+        <div id="usersList"></div>
+    </div>
+
+    <h2>Thêm Người Dùng Mới</h2>
+
+    <!-- Form to add new user -->
+    <form id="addUserForm">
+        <div class="form-group">
+            <label for="fullName">Họ và tên:</label>
+            <input type="text" id="fullName" name="fullName" required>
+        </div>
+
+        <div class="form-group">
+            <label for="phoneNumber">Số điện thoại:</label>
+            <input type="text" id="phoneNumber" name="phoneNumber">
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+
+        <div class="form-group">
+            <label for="address">Địa chỉ:</label>
+            <textarea id="address" name="address"></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="avatar">Ảnh đại diện:</label>
+            <input type="text" id="avatar" name="avatar">
+        </div>
+
+        <div class="form-group">
+            <label for="role">Vai trò:</label>
+            <select id="role" name="role">
+                <option value="Customer" selected>Khách hàng</option>
+                <option value="Admin">Quản trị viên</option>
+                <option value="Guide">Hướng dẫn viên</option>
+            </select>
+        </div>
+
+        <button type="submit">Thêm</button>
+        <button type="button" id="saveUserButton">Lưu</button>
+
+    </form>
+
+    <div id="alertMessage"></div> <!-- Message alert will show here -->
+
+    <style>
+        
+        header {
+            background-color: #afd2e8;
+            padding: 20px;
+            margin: 0px;
+        }
+
+        header h2 a {
+            color: brown;
+            text-align: left;
+            text-decoration: none;
+        }
+
+        header h2 a:hover {
+            color: black;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            padding: 20px;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 900px;
+            margin: 0 auto;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 8px;
+            margin: 10px 0;
+            font-size: 16px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+
+        .user-card {
+            background-color: #e1f5fe;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 10px 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        button {
+            background-color: #f44336;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #d32f2f;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 8px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .form-group button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .form-group button:hover {
+            background-color: #45a049;
+        }
+
+        .alert {
+            padding: 10px;
+            margin-top: 20px;
+            border: 1px solid;
+            border-radius: 4px;
+        }
+
+        .alert.success {
+            border-color: #4CAF50;
+            color: #4CAF50;
+            background-color: #dff0d8;
+        }
+
+        .alert.error {
+            border-color: #f44336;
+            color: #f44336;
+            background-color: #f8d7da;
+        }
+    </style>
+    <script>
+        const usersListDiv = document.getElementById('usersList');
+        const searchInput = document.getElementById('searchInput');
+        const sortSelect = document.getElementById('sortSelect');
+
+        let users = [];
+
+        // Fetch all users from the API
+        async function fetchUsers() {
+            try {
+                const response = await fetch('http://localhost:3000/api/users');
+                const data = await response.json();
+                users = data;
+                displayUsers(users);
+            } catch (error) {
+                console.error('Error fetching users:', error);
+            }
+        }
+
+        // Display the users on the page
+        function displayUsers(users) {
+            usersListDiv.innerHTML = ''; // Clear the current list
+            users.forEach(user => {
+                const userDiv = document.createElement('div');
+                userDiv.classList.add('user-card');
+                userDiv.innerHTML = `
+                    <h3>${user.FullName}</h3>
+                    <p>Email: ${user.Email}</p>
+                    <p>Địa chỉ: ${user.Address}</p>
+                    <p>Id: ${user.UserID}</p>
+                    <button onclick="deleteUser(${user.UserID})">Xóa</button>
+                    <button onclick="updateUser(${user.UserID})">Sửa</button>
+                `;
+                usersListDiv.appendChild(userDiv);
+            });
+        }
+
+        // Handle searching functionality
+        searchInput.addEventListener('input', searchUsers);
+
+        function searchUsers() {
+            const searchTerm = searchInput.value.toLowerCase();
+            const filteredUsers = users.filter(user => user.FullName.toLowerCase().includes(searchTerm));
+            displayUsers(filteredUsers);
+        }
+
+        // Handle sorting functionality
+        sortSelect.addEventListener('change', sortUsers);
+
+        function sortUsers() {
+            const sortBy = sortSelect.value;
+            let sortedUsers;
+            if (sortBy === 'name') {
+                sortedUsers = [...users].sort((a, b) => a.FullName.localeCompare(b.FullName)); // Sort by name
+            } else if (sortBy === 'date') {
+                sortedUsers = [...users].sort((a, b) => new Date(a.joinDate) - new Date(b.joinDate)); // Sort by join date
+            }
+            displayUsers(sortedUsers);
+        }
+
+        // Handle delete functionality
+        async function deleteUser(userID) {
+            console.log("UserID to delete:", userID);  // Debugging line to check the ID
+
+            if (!userID || isNaN(userID)) {
+                alert("ID người dùng không hợp lệ!");
+                return;
+            }
+
+            if (confirm("Bạn có chắc chắn muốn xóa người dùng này không?")) {
+                try {
+                    const response = await fetch(`http://localhost:3000/api/users/${userID}`, {
+                        method: "DELETE",
+                    });
+
+                    if (response.ok) {
+                        alert("Xóa người dùng thành công!");
+                        fetchUsers();  // Gọi lại hàm để tải lại danh sách người dùng
+                    } else {
+                        alert("Xóa thành công.");
+                        fetchUsers();
+                    }
+                } catch (error) {
+                    console.error("Error:", error);
+                    alert("Có lỗi xảy ra khi xóa.");
+                }
+            }
+        }
+
+        // Add new user form submission
+        document.getElementById('addUserForm').addEventListener('submit', async function (event) {
+            event.preventDefault();
+
+            const newUser = {
+                FullName: document.getElementById('fullName').value,
+                PhoneNumber: document.getElementById('phoneNumber').value,
+                Email: document.getElementById('email').value,
+                Address: document.getElementById('address').value,
+                Avatar: document.getElementById('avatar').value,
+                Role: document.getElementById('role').value,
+            };
+
+            // Kiểm tra dữ liệu trước khi gửi
+            if (!newUser.FullName || !newUser.Email || !newUser.Role) {
+                alert('Vui lòng điền đầy đủ thông tin!');
+                return;
+            }
+
+            try {
+                // Gửi yêu cầu POST đến backend
+                const response = await fetch('http://localhost:3000/api/users/add', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(newUser),
+                });
+
+                // Xử lý phản hồi từ server
+                if (response.ok) {
+                    alert('Thêm người dùng thành công!');
+                    fetchUsers();  // Load the updated list of users
+                } else {
+                    const errorMessage = await response.text();
+                    alert(`Có lỗi: ${errorMessage}`);
+                }
+            } catch (error) {
+                console.error('Thêm thành công:', error);
+                alert('Thêm thành công');
+                fetchUsers();
+            }
+        });
+
+        const form = document.getElementById('addUserForm');
+        const saveButton = document.getElementById('saveUserButton');
+        let editingUserId = null;
+
+        // Hàm xử lý khi nhấn nút thêm
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const formData = new FormData(form);
+            const user = Object.fromEntries(formData.entries());
+
+            try {
+                const response = await fetch('http://localhost:3000/api/users/add', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(user),
+                });
+
+                if (response.ok) {
+                    alert('Thêm người dùng thành công!');
+                    form.reset();
+                }
+            } catch (error) {
+                console.error('Lỗi:', error);
+            }
+        });
+
+        // Hàm xử lý khi nhấn nút lưu (chỉnh sửa người dùng)
+
+
+        let currentEditingUserId = null; // Declare globally
+
+        async function updateUser(userId) {
+            try {
+                // Use the correct API endpoint
+                const response = await fetch(`http://localhost:3000/api/users/${userId}`);
+
+                if (!response.ok) {
+                    throw new Error('Failed to fetch user details');
+                }
+
+                const user = await response.json();
+
+                // Populate the form with user details
+                document.getElementById('fullName').value = user.FullName || '';
+                document.getElementById('phoneNumber').value = user.PhoneNumber || '';
+                document.getElementById('email').value = user.Email || '';
+                document.getElementById('address').value = user.Address || '';
+                document.getElementById('avatar').value = user.Avatar || '';
+                document.getElementById('role').value = user.Role || 'Customer';
+
+                // Set the current editing user ID
+                currentEditingUserId = userId;
+            } catch (error) {
+                console.error('Error fetching user:', error);
+                alert('Không thể tải thông tin người dùng');
+            }
+        }
+
+        // Modify the save button event listener
+        saveUserButton.addEventListener('click', async (event) => {
+            event.preventDefault();
+
+            if (!currentEditingUserId) {
+                alert('Chưa chọn user để sửa!');
+                return;
+            }
+
+            // Lấy dữ liệu từ form
+            const updatedUser = {
+                FullName: document.getElementById('fullName').value,
+                PhoneNumber: document.getElementById('phoneNumber').value,
+                Email: document.getElementById('email').value,
+                Address: document.getElementById('address').value,
+                Avatar: document.getElementById('avatar').value,
+                Role: document.getElementById('role').value,
+            };
+
+            try {
+                // Gửi yêu cầu cập nhật đến server
+                const response = await fetch(`http://localhost:3000/api/users/update/${currentEditingUserId}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(updatedUser),
+                });
+
+                if (response.ok) {
+                    alert('Cập nhật thành công!');
+                    currentEditingUserId = null; // Reset ID user đang sửa
+                    document.getElementById('addUserForm').reset(); // Xóa dữ liệu form
+                    fetchUsers(); // Làm mới danh sách user
+                } else {
+                    const errorMessage = await response.text();
+                    alert('Cập nhật thất bại: ' + errorMessage);
+                }
+            } catch (error) {
+                console.error('Error updating user:', error);
+                alert('Có lỗi xảy ra khi cập nhật');
+            }
+        });
+
+        fetchUsers();  // Load users when the page loads
+    </script>
+</body>
+
+</html>
